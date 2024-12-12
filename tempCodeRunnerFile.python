@@ -1,0 +1,57 @@
+import pandas as pd
+import time
+from opencage.geocoder import OpenCageGeocode
+
+# Substitua pela sua chave da OpenCage
+key = '7debb5c32f844527ac5b3bd1c832cd47'
+geocoder = OpenCageGeocode(key)
+
+# Função para obter coordenadas
+def obter_coordenadas(cidade):
+    try:
+        result = geocoder.geocode(cidade)
+        if result:
+            # Verifique se a resposta contém as coordenadas
+            lat = result[0].get('geometry', {}).get('lat')
+            lng = result[0].get('geometry', {}).get('lng')
+            if lat and lng:
+                return lat, lng
+            else:
+                print(f"Coordenadas não encontradas para {cidade}")
+                return None, None
+        else:
+            print(f"Nenhum resultado encontrado para {cidade}")
+            return None, None
+    except Exception as e:
+        print(f"Erro ao buscar coordenadas para {cidade}: {e}")
+        return None, None
+
+# Lista de cidades
+cidades = [
+    "Abaetetuba, PA, Brasil",
+    "Abreu e Lima, PE, Brasil",
+    "Açailândia, MA, Brasil",
+    "Acaraú, CE, Brasil",
+    # (adicionar mais cidades aqui)
+]
+
+# Lista para armazenar resultados
+resultados = []
+
+# Iterar sobre a lista de cidades
+for cidade in cidades:
+    print(f"Buscando coordenadas para: {cidade}")
+    lat, lng = obter_coordenadas(cidade)
+    if lat and lng:
+        resultados.append({'Cidade': cidade, 'Latitude': lat, 'Longitude': lng})
+    
+    # Pausa de 1 segundo entre as requisições (ajuste conforme necessário)
+    time.sleep(1)
+
+# Criar um DataFrame com os resultados
+df = pd.DataFrame(resultados)
+
+# Salvar os resultados em um arquivo Excel
+df.to_excel('coordenadas_cidades.xlsx', index=False)
+
+print("Coordenadas salvas com sucesso!")

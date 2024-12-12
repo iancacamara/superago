@@ -1,0 +1,17 @@
+using XLSX
+
+# Dados de exemplo
+dados = [["Cidade", "Latitude", "Longitude"], 
+         ["Abaetetuba, PA", -1.693, -48.876], 
+         ["Abreu e Lima, PE", -7.894, -34.869]]
+
+# Abrindo ou criando o arquivo "teste.xlsx"
+XLSX.openxlsx("teste.xlsx", mode="w") do xlsx
+    # Adicionando uma nova aba chamada "Coordenadas"
+    sheet = XLSX.addsheet(xlsx, "Coordenadas")
+    
+    # Escrevendo os dados na aba "Coordenadas"
+    XLSX.writetable(sheet, dados, header=true)
+end
+
+println("Arquivo teste.xlsx foi gerado com sucesso!")
