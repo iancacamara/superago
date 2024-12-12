@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oportunidade de Trabalho - Promotor de Vendas</title>
+    <!-- Link para o Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJv3QhqLMpG8r+Knujs5syCx9STp0V6OslCz5owJlbkKnGVy6s2iDsy9+4ij" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .list-group-item {
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            margin-top: 30px;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+        .section-subheader {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+            color: #555;
+        }
+        .section-description {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .info-box {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            Oportunidade de Renda Extra
+        </div>
+        <div class="card-body">
+            <h1 class="section-header">Junte-se a nós! Estamos em busca de promotores de vendas para diversas áreas e regiões do Brasil.</h1>
+            <p class="section-description">
+                Estamos expandindo nossa atuação e buscando pessoas que desejam aumentar sua renda trabalhando como **promotor repositor** em diversos segmentos. A oportunidade oferece um **valor fixo mensal** em formato PJ (prestador de serviços – MEI). 
+                As vagas estão abertas em áreas como **varejo, pet shop, farmácias, supermercados, cash & carry** e muito mais.
+            </p>
+            <div class="info-box">
+                <h3>Vaga de Promotor de Vendas</h3>
+                <ul>
+                    <li><strong>Área de Atuação:</strong> Supermercados, Farmácias, Pet Shops, Varejo e mais!</li>
+                    <li><strong>Renda Mensal:</strong> De R$200,00 a R$1.500,00, dependendo da quantidade de clientes e da área de atuação.</li>
+                    <li><strong>Modelo de Contratação:</strong> PJ (Prestador de Serviços - MEI)</li>
+                    <li><strong>Horário Flexível:</strong> Escolha seu horário de trabalho (manhã ou tarde), com carga horária reduzida (mínimo de 2 horas/dia).</li>
+                    <li><strong>Atividades:</strong> Abastecimento de produtos, precificação, organização de estoque, controle de validade, positivação de materiais e envio de relatórios.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-subheader">Como Funciona</h2>
+            <p class="section-description">
+                Você será responsável por abastecer, organizar e precificar produtos nos pontos de venda da sua região, podendo trabalhar de **segunda a sexta-feira**. O horário é flexível, e o trabalho é de **baixa carga horária**, permitindo um bom equilíbrio entre vida profissional e pessoal.
+            </p>
+
+            <h2 class="section-subheader">Interessado? Inscreva-se Agora!</h2>
+            <p class="section-description">
+                Preencha o formulário abaixo para se inscrever para a vaga e fazer parte de nosso banco de dados de candidatos!
+            </p>
+
+            <!-- Formulário de Inscrição -->
+            <form method="POST" action="/">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">Cidade</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Digite sua cidade" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Digite seu telefone" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <h2 class="mt-5 text-center">Candidatos Cadastrados</h2>
+    <ul class="list-group mt-3">
+        {% for candidate in candidates %}
+        <li class="list-group-item">
+            <strong>{{ candidate.name }}</strong><br>
+            E-mail: {{ candidate.email }}<br>
+            Cidade: {{ candidate.city }}<br>
+            Telefone: {{ candidate.phone }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Bootstrap JS (não essencial, mas pode ser útil) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqjQquLHD2r4H5I2DphuCSxD0l0V3zJtZqfAsGdKjHJwA" crossorigin="anonymous"></script>
+
+</body>
+</html>
